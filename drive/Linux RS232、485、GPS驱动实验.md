@@ -512,6 +512,3 @@ minicom 配置 `/dev/ttymxc2`：
 
 模块冷启动搜星需要数分钟，搜星成功后输出 NMEA 定位字符串（`$GPRMC`、`$GPGGA` 等）。
 
----
-
-> **作者**：zuozhongkai | 正点原子
