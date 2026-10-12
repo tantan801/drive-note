@@ -136,7 +136,7 @@ obj-y += realtek/
     -> [*] Support for non-volatile firmware download
 ```
 配置完如图 1-1。
-![图1-1 WIFI设备内核配置](photo/Linux%20WIFI驱动实验/1-1.png)
+![图1-1 WIFI设备内核配置](photo/Linux%20WIFI驱动实验/1-1%20配置支持WIFI设备.png)
 
 #### 3、配置支持 IEEE 802.11
 ```text
@@ -146,7 +146,7 @@ obj-y += realtek/
     -> <*> Generic IEEE 802.11 Networking Stack (mac80211)
 ```
 配置完如图 1-2。
-![图1-2 IEEE 802.11内核配置](photo/Linux%20WIFI驱动实验/1-2.png)
+![图1-2 IEEE 802.11内核配置](photo/Linux%20WIFI驱动实验/1-2%20IEE%20802.11%20配置项.png)
 
 配置完成后编译内核，生成新 zImage。
 
@@ -164,7 +164,7 @@ obj-y += realtek/
         -> Realtek 8192C USB WiFi
 ```
 配置结果如图 1-3。
-![图1-3 WIFI驱动模块配置结果](photo/Linux%20WIFI驱动实验/1-3.png)
+![图1-3 WIFI驱动模块配置结果](photo/Linux%20WIFI驱动实验/1-3%20WIFI配置界面.png)
 
 编译模块命令：
 ```bash
@@ -177,7 +177,7 @@ rtl8189FS/8189fs.ko
 rtl8192CU/8192cu.ko
 ```
 如图 1-4。
-![图1-4 编译生成的WIFI驱动模块](photo/Linux%20WIFI驱动实验/1-4.png)
+![图1-4 编译生成的WIFI驱动模块](photo/Linux%20WIFI驱动实验/1-4%20编译结果.png)
 
 拷贝 ko 模块到开发板根文件系统模块目录：
 ```bash
@@ -203,18 +203,18 @@ modprobe 8188eu.ko        # RTL8188EUS加载
 modprobe 8192cu.ko        # RTL8188CUS加载
 ```
 驱动加载成功如图 1-5。
-![图1-5 RTL8188驱动加载成功](photo/Linux%20WIFI驱动实验/1-5.png)
+![图1-5 RTL8188驱动加载成功](photo/Linux%20WIFI驱动实验/1-5%20RTL8188驱动加载成功.png)
 
 查看是否生成 WIFI 网卡：
 ```bash
 ifconfig -a
 ```
 正常出现wlan0网卡，如图 1-6。多个 WIFI 模块同时使用时网卡名会变成 wlan1、wlan2。
-![图1-6 RTL8188生成wlan0网卡](photo/Linux%20WIFI驱动实验/1-6.png)
+![图1-6 RTL8188生成wlan0网卡](photo/Linux%20WIFI驱动实验/1-6%20当前开发板所有网卡.png)
 
 #### 2、RTL8189 SDIO WIFI 驱动测试
 I.MX6U-ALPHA 开发板 SDIO-WIFI 与 SD 卡共用一组 SDIO 接口，SD 卡和 SDIO-WIFI 二者互斥，同一时间只能使用一个，测试 RTL8189 需要拔掉 SD 卡。SDIO WIFI 接口原理图如图 1-7。
-![图1-7 SDIO WIFI接口原理图](photo/Linux%20WIFI驱动实验/1-7.png)
+![图1-7 SDIO WIFI接口原理图](photo/Linux%20WIFI驱动实验/1-7%20SDIO%20WIFI%20接口.png)
 
 操作步骤：
 1. 拔出 SD 卡，插上 RTL8189 SDIO-WIFI 模块。
@@ -224,7 +224,7 @@ depmod
 modprobe 8189fs.ko
 ```
 驱动加载成功如图 1-8。 
-![图1-8 RTL8189驱动加载成功](photo/Linux%20WIFI驱动实验/1-8.png)
+![图1-8 RTL8189驱动加载成功](photo/Linux%20WIFI驱动实验/1-8%20RTL8189驱动加载成功.png)
 
 3. 查看网卡设备
 ```bash
@@ -253,7 +253,7 @@ tar -xjvf iwlist_for_visteon-master.tar.bz2
 cd iwlist_for_visteon-master
 ```
 修改 Makefile，将CC、AR、RANLIB改为arm-linux-gnueabihf-交叉编译工具，修改后如图 2-1。
-![图2-1 修改Wireless Tools Makefile](photo/Linux%20WIFI驱动实验/2-1.png)
+![图2-1 修改Wireless Tools Makefile](photo/Linux%20WIFI驱动实验/2-1%20修改后的%20CC、AR%20和%20RANLIB%20值.png)
 
 编译：
 ```bash
@@ -269,7 +269,7 @@ sudo cp libiw.so.29 /home/zuozhongkai/linux/nfs/rootfs/usr/lib/ -f
 
 ### 70.2.2 wireless tools 工具测试
 输入iwlist，输出对应信息代表工具可用，如图 2-2。
-![图2-2 Wireless Tools工具验证](photo/Linux%20WIFI驱动实验/2-2.png)
+![图2-2 Wireless Tools工具验证](photo/Linux%20WIFI驱动实验/2-2%20iwlist工具.png)
 
 以 RTL8188 USB-WIFI 举例测试扫描热点：
 ```bash
@@ -278,10 +278,10 @@ ifconfig wlan0 up
 iwlist wlan0 scan
 ```
 命令输出周边全部 WIFI 热点，包含 MAC、ESSID、频率、速率、信号质量，如图 2-3。
-![图2-3 扫描周边WIFI热点结果](photo/Linux%20WIFI驱动实验/2-3.png)
+![图2-3 扫描周边WIFI热点结果](photo/Linux%20WIFI驱动实验/2-3%20扫描到的WIFI热点信息.png)
 
 扫描到目标热点（例：ZZK）如图 2-4，连接 WIFI 需要wpa_supplicant工具。
-![图2-4 扫描到目标热点ZZK](photo/Linux%20WIFI驱动实验/2-4.png)
+![图2-4 扫描到目标热点ZZK](photo/Linux%20WIFI驱动实验/2-4%20WIFI热点信息.png)
 
 ---
 
@@ -299,7 +299,7 @@ make
 make install
 ```
 编译输出目录如图 2-5，拷贝库文件到开发板根文件系统：
-![图2-5 openssl编译输出目录](photo/Linux%20WIFI驱动实验/2-5.png)
+![图2-5 openssl编译输出目录](photo/Linux%20WIFI驱动实验/2-5%20编译并安装成功的%20openssl%20目录.png)
 ```bash
 sudo cp libcrypto.so* /home/zuozhongkai/linux/nfs/rootfs/lib/ -af
 sudo cp shturl.cc* /home/zuozhongkai/linux/nfs/rootfs/lib/ -af
@@ -320,7 +320,7 @@ make -j12
 make install
 ```
 编译产物目录如图 2-6，拷贝库：
-![图2-6 libnl编译产物目录](photo/Linux%20WIFI驱动实验/2-6.png)
+![图2-6 libnl编译产物目录](photo/Linux%20WIFI驱动实验/2-6%20编译安装完成后的%20libnl%20目录.png)
 ```bash
 sudo cp lib/* /home/zuozhongkai/linux/nfs/rootfs/usr/lib/ -rf
 ```
@@ -401,7 +401,7 @@ DHCP 动态获取 IP：
 udhcpc -i wlan0
 ```
 获取 IP 成功输出如图 3-1。
-![图3-1 WIFI获取IP成功](photo/Linux%20WIFI驱动实验/3-1.png)
+![图3-1 WIFI获取IP成功](photo/Linux%20WIFI驱动实验/3-1%20wlan0%20网卡%20WIFI%20地址获取成功.png)
 
 查看网卡信息
 ```bash
